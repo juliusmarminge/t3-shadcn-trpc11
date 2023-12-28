@@ -1,0 +1,19 @@
+{
+  "editor.codeActionsOnSave": { "source.fixAll.eslint": "explicit" },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "eslint.experimental.useFlatConfig": true,
+  "eslint.rules.customizations": [{ "rule": "*", "severity": "warn" }],
+  "tailwindCSS.experimental.configFile": "./tailwind.config.ts",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.surveys.enabled": false,
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    // useRouter should be imported from `next/navigation`
+    "next/router.d.ts",
+    "next/dist/client/router.d.ts",
+
+    // Prefer imports from our UI lib wrappers
+    "react-hook-form/dist/index.d.ts"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

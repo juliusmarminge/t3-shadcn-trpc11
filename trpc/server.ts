@@ -1,11 +1,11 @@
 import "server-only";
 
+import { cache } from "react";
+import { headers } from "next/headers";
 import { createTRPCClient, loggerLink, TRPCClientError } from "@trpc/client";
 import { callProcedure } from "@trpc/server";
 import { observable } from "@trpc/server/observable";
 import type { TRPCErrorResponse } from "@trpc/server/rpc";
-import { headers } from "next/headers";
-import { cache } from "react";
 
 import { tson } from "~/lib/tson";
 import { appRouter } from "~/trpc/root";

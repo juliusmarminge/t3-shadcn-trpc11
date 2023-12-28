@@ -1,9 +1,10 @@
 import type { Config } from "tailwindcss";
+import animate from "tailwindcss-animate";
 import { fontFamily } from "tailwindcss/defaultTheme";
 
 export default {
   darkMode: ["class"],
-  content: ["./app/**/*.tsx", "./components/**/*.tsx", "./ui/**/*.tsx"],
+  content: ["app/**/*.{ts,tsx}", "ui/**/*.{ts,tsx}"],
   theme: {
     container: {
       center: true,
@@ -52,6 +53,9 @@ export default {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+      borderColor: {
+        DEFAULT: "hsl(var(--border))",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
@@ -73,5 +77,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [animate],
 } satisfies Config;

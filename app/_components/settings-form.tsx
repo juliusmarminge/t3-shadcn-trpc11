@@ -1,9 +1,9 @@
 "use client";
 
-import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useFieldArray } from "react-hook-form";
+import { toast } from "sonner";
 
-import { LoadingDots } from "~/ui/loading-dots";
 import { settingsValidator } from "~/lib/validators";
 import { trpc } from "~/trpc/react";
 import type { RouterOutputs } from "~/trpc/root";
@@ -19,7 +19,7 @@ import {
   useForm,
 } from "~/ui/form";
 import { Input } from "~/ui/input";
-import { useFieldArray } from "react-hook-form";
+import { LoadingDots } from "~/ui/loading-dots";
 
 export function SettingsForm(props: {
   initialSettings: RouterOutputs["app"]["info"];
@@ -47,7 +47,7 @@ export function SettingsForm(props: {
           form.reset({}, { keepValues: true });
           router.refresh();
         })}
-        className="flex flex-col gap-2 max-w-md"
+        className="flex flex-col gap-2"
       >
         <FormField
           control={form.control}
@@ -75,14 +75,8 @@ export function SettingsForm(props: {
                 <div className="flex flex-col gap-4">
                   {fa.fields.map((field, i) => (
                     <div key={i} className="flex gap-2">
-                      <Input
-                        key={field.id}
-                        {...form.register(`members.${i}.name`)}
-                      />
-                      <Input
-                        key={field.id}
-                        {...form.register(`members.${i}.role`)}
-                      />
+                      <Input {...form.register(`members.${i}.name`)} />
+                      <Input {...form.register(`members.${i}.role`)} />
                       <Button
                         type="button"
                         onClick={() => fa.remove(i)}
