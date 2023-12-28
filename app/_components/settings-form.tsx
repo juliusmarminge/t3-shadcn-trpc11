@@ -11,6 +11,7 @@ import { Button } from "~/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -29,8 +30,7 @@ export function SettingsForm(props: {
   });
   const fa = useFieldArray({
     control: form.control,
-    // @ts-expect-error - idk why this is...
-    name: "treatoes",
+    name: "members",
   });
 
   const router = useRouter();
@@ -55,6 +55,7 @@ export function SettingsForm(props: {
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
+              <FormDescription>Enter the name of the app</FormDescription>
               <FormControl>
                 <Input {...field} />
               </FormControl>
@@ -65,17 +66,22 @@ export function SettingsForm(props: {
 
         <FormField
           control={form.control}
-          name="treatoes"
+          name="members"
           render={() => (
             <FormItem>
-              <FormLabel>Treatoes</FormLabel>
+              <FormLabel>Members</FormLabel>
+              <FormDescription>Enter the members of the app</FormDescription>
               <FormControl>
                 <div className="flex flex-col gap-4">
                   {fa.fields.map((field, i) => (
                     <div key={i} className="flex gap-2">
                       <Input
                         key={field.id}
-                        {...form.register(`treatoes.${i}`)}
+                        {...form.register(`members.${i}.name`)}
+                      />
+                      <Input
+                        key={field.id}
+                        {...form.register(`members.${i}.role`)}
                       />
                       <Button
                         type="button"
@@ -90,7 +96,7 @@ export function SettingsForm(props: {
 
                   <Button
                     type="button"
-                    onClick={() => fa.append([""])}
+                    onClick={() => fa.append([{ name: "", role: "" }])}
                     className="self-end"
                   >
                     +

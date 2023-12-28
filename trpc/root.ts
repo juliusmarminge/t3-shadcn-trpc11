@@ -1,12 +1,13 @@
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 
+import type { Settings } from "~/lib/validators";
 import { settingsValidator } from "~/lib/validators";
 import { createTRPCRouter, publicProcedure } from "~/trpc/trpc";
 
 // Database
-const settings = {
+const settings: Settings = {
   name: "",
-  treatoes: [] as string[],
+  members: [],
 };
 
 /**
@@ -23,7 +24,7 @@ export const appRouter = createTRPCRouter({
     update: publicProcedure.input(settingsValidator).mutation(async (opts) => {
       await new Promise((resolve) => setTimeout(resolve, 500));
       settings.name = opts.input.name;
-      settings.treatoes = opts.input.treatoes;
+      settings.members = opts.input.members;
 
       return settings;
     }),
