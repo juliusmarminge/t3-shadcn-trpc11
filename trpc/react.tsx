@@ -36,7 +36,7 @@ export function TRPCReactProvider(props: {
           async headers() {
             const headers = new Map(await props.headersPromise);
             headers.set("x-trpc-source", "react");
-            return Object.fromEntries(headers);
+            return headers;
           },
         }),
       ],
